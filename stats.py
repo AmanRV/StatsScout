@@ -7,10 +7,12 @@ def get_stats(league, season,page):
     load_dotenv()
 
     url = "https://v3.football.api-sports.io/players"
+
+    #the parameters: football league, the season (year), and the page
     querystring = {"league":league, "season":season, "page":page}
 
     headers = {
-	    "X-RapidAPI-Key": os.getenv('api_key'),
+	    "X-RapidAPI-Key": os.getenv('API_KEY'),
 	    "X-RapidAPI-Host": "v3.football.api-sports.io"
     }
 
@@ -19,8 +21,28 @@ def get_stats(league, season,page):
     stats_json = api_response.text
     parsed_json = json.loads(stats_json)
 
-    print(parsed_json['response'][0]['player']['name'])
+    return parsed_json
 
-get_stats("39","2020","1")
+def max_page(league,season,page):
+    #finds how many pages of players there are
+    data = get_stats(league, season, page)
+    total_pages = data["paging"]["total"]
+    return total_pages
+
+def sort_data(parsed_json):
+    #cleaning up unwanted keys
+    del parsed_json["get"]
+    del parsed_json["parameters"]
+    del parsed_json["errors"]
+    del parsed_json["results"]
+    del parsed_json["paging"]
+
+    return parsed_json
+
+
+
+
+
+
 
     
