@@ -30,17 +30,13 @@ def max_page(league,season,page):
     return total_pages
 
 def sort_data(parsed_json):
+    name_list = []
     #cleaning up unwanted keys
     del parsed_json["get"]
     del parsed_json["parameters"]
     del parsed_json["errors"]
     del parsed_json["results"]
     del parsed_json["paging"]
-
-    return parsed_json
-
-
-
 
 
 
