@@ -1,15 +1,15 @@
 {
-    "get":"players", //cut out get
-    "parameters":{   //cut out params
+    "get":"players", 
+    "parameters":{   
        "league":"39",
        "season":"2020",
        "page":"1"
     },
-    "errors":[   // cut out errors
+    "errors":[  
        
     ],
-    "results":20, //cut out results
-    "paging":{  //cut out paging
+    "results":20, 
+    "paging":{  
        "current":1,
        "total":37
     },
