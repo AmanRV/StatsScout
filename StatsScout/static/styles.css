@@ -19,6 +19,7 @@ body {
 
 .nav-item{
     margin-right: 20px;
+    transition: all 0.4s;
 }
 
 .nav-link{
@@ -27,14 +28,13 @@ body {
     font-weight: bold;
     color:#FFFFFF;
     text-decoration: none;
-    transition: color 0.3s;
+    transition: all 0.4s;
 }
 
 .nav-link:hover{
     color:#929eff;
+    font-size: 21.5px;
 }
-
-
 
 .logo-container{
     display: flex;
@@ -76,12 +76,12 @@ https://codepen.io/bugraskl/pen/LYbbqxv
   
   .search-input {
     width: 100%;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Merriweather', sans-serif;
     font-size: 16px;
     padding: 15px 45px 15px 15px;
     background-color: #465D7C;
     color: #ffffff;
-    border-radius: 6px;
+    border-radius: 30px;
     border:none;
     transition: all .4s;
   }
@@ -107,12 +107,113 @@ https://codepen.io/bugraskl/pen/LYbbqxv
   
   .search-btn:hover {
     transform: scale(1.2);
-    cursor: pointer;
-    color: black;
+    color: #929eff;
   }
   
   .search-btn:focus {
     outline:none;
-    color:black;
+    color:#929eff;
   }
   /* End search bar */
+
+.instruction-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+  
+.instruction{
+  width: 60vw;
+  height: 250px;
+  background-color: #232f3e;
+  border-radius: 30px;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+}
+
+.instruction:hover{
+  box-shadow: 0 5px 16px rgba(0,0,0,0.3);
+  transform: translateY(-5px);
+}
+
+.title-instruction{
+  color:#FFFFFF;
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  margin-bottom: 8px;
+  
+}
+
+p {
+  color:#c0d5ff;
+  text-align:center;
+  margin-top: 8px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  line-height: 25px;
+  font-size: 15px;
+  font-family: 'Merriweather', serif;
+  font-weight: lighter;
+}
+
+.leagues-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.leagues-text{
+  color:#FFFFFF;
+  font-family: 'Merriweather', serif;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.eng{
+  border-radius: 10px;
+  width:30px;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+.spa{
+  border-radius: 10px;
+  width:30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+.ita{
+  border-radius: 10px;
+  width:30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+.ger{
+  border-radius: 10px;
+  width:30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+.fra{
+  border-radius: 10px;
+  width:30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+
