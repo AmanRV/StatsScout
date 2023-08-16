@@ -30,5 +30,4 @@ def update_league(league_data):
             print("Adding Player: ",player["name"])
             new_entry = players.insert_one(player)
 
-connect_database()
 

@@ -1,0 +1,118 @@
+body {
+    background-color: #1B2430;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 10px;
+    
+    width: calc(100vw - 40px);
+    height: 40px;
+    background-color: #304056;
+    margin:20px auto;
+    border-radius: 30px;
+
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+}
+
+.nav-item{
+    margin-right: 20px;
+}
+
+.nav-link{
+    font-family: 'Merriweather', serif;
+    font-size: 22px;
+    font-weight: bold;
+    color:#FFFFFF;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-link:hover{
+    color:#929eff;
+}
+
+
+
+.logo-container{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.logo{
+    width: 150px;
+
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    font-family: 'Merriweather', serif;
+    display: flex;
+    color:#FFFFFF;
+    font-size: 64px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+/* Search bar by Bugra 
+https://codepen.io/bugraskl/pen/LYbbqxv
+*/
+.search-box {
+    width: 350px;
+    position: relative;
+    display: flex;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      margin-top: 10px;
+  }
+  
+  .search-input {
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding: 15px 45px 15px 15px;
+    background-color: #465D7C;
+    color: #ffffff;
+    border-radius: 6px;
+    border:none;
+    transition: all .4s;
+  }
+  
+  .search-input:focus {
+    border:none;
+    outline:none;
+    box-shadow: 0 1px 12px #83a5d96b;
+    -moz-box-shadow: 0 1px 12px #83a5d96b;
+    -webkit-box-shadow: 0 1px 12px #83a5d94f;
+  }
+  
+  .search-btn {
+    background-color: transparent;
+    font-size: 18px;
+    padding: 6px 9px;
+    margin-left:-45px;
+    border:none;
+    color: #ffffff;
+    transition: all .4s;
+    z-index: 10;
+  }
+  
+  .search-btn:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    color: black;
+  }
+  
+  .search-btn:focus {
+    outline:none;
+    color:black;
+  }
+  /* End search bar */
