@@ -13,24 +13,29 @@
 
     <body>
 
-      <div class="navbar">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/">Home</a>
-          <a class="nav-item nav-link" href="/about">About</a>
-        </div>
-      </div>
-
-      <div class="content">
-        {% block content %}{% endblock %}
-      </div>
-    
-
       <script>
         type='text/javascript'
         src="{{ url_for('static', filename='index.js') }}"
       </script>
 
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+      
+      <div class="navbar">
+
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/">Home</a>
+          <a class="nav-item nav-link" href="/about">About</a>
+        </div>
+      </div>
+
+      
+
+      <div class="content">
+        {% block content %}{% endblock %}
+      </div>
+    
+
+      
 
 
     </body>
