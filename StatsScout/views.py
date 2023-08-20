@@ -19,9 +19,10 @@ def summary():
     try:
         player_name = request.args.get('player_name')
         photo = player_stats(player_name)["photo"]
+        club = player_stats(player_name)["team"]['logo']
         player_name = player_stats(player_name)["name"]
         print(player_stats(player_name) is None)
-        return render_template('summary.html', photo=photo, player_name=player_name)
+        return render_template('summary.html', photo=photo, player_name=player_name,club=club)
     
     except:
         return render_template("home.html")

@@ -219,6 +219,7 @@ p {
 .title-container{
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .player-pic{
@@ -264,6 +265,25 @@ p {
 .player-name:hover, .player-name2:hover{
   box-shadow: 0 5px 16px rgba(0,0,0,0.3);
   transform: translateY(-5px); 
+}
+
+.name-pic{
+  display: flex;
+  align-items: center;
+}
+
+.club-box{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.club{
+  width: 130px;
+  height: 130px;
+  margin: 5px;
+  margin-left: 35px;
+  margin-right: 35px;
 }
 
 
