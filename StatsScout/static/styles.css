@@ -259,6 +259,8 @@ p {
 
 .player-name2{
   width: 35vw;
+  display: flex;
+  align-items: center;
 }
 
 /*Apply shadow to all */
@@ -284,6 +286,57 @@ p {
   margin: 5px;
   margin-left: 35px;
   margin-right: 35px;
+}
+
+.bio{
+  margin: 20px;
+  font-family: 'Merriweather', serif;
+  color: white;
+  font-size: 15px;
+}
+
+.intro-stats{
+  margin: 20px;
+  font-family: 'Merriweather', serif;
+  color: white;
+  font-size: 15px;
+}
+
+.high-rated{
+  font-size: 40px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  color:rgb(63, 190, 63)
+}
+
+.medium-rated{
+  font-size: 40px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  color:rgb(127, 219, 75)
+}
+
+.medium-low-rated{
+  font-size: 40px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  color:rgb(195, 219, 75)
+}
+
+.low-rated{
+    font-size: 40px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  color:rgb(219, 109, 75)
+}
+
+.desc{
+  margin: 25px;
+  font-family: 'Merriweather', serif;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  line-height: 25px;
 }
 
 

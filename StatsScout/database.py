@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 import re
 
+
 def update_league(league_data):
 
     load_dotenv()
@@ -40,4 +41,6 @@ def player_stats(player_name):
 
     player_info = players.find_one({'name': {"$regex": re.compile(player_name, re.IGNORECASE)}})
     return player_info
+
+
 

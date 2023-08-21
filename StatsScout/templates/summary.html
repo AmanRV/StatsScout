@@ -18,9 +18,30 @@
 
 <div class="flexbox-container">
     <div class="player-name">
-
+        <div class="bio">
+            {% set rating_float = rating|float %}
+            {% if rating_float >= 8.0 %}
+                <h3 class="high-rated">{{rating}} Rated {{position}}</h3>
+            {% elif rating_float >= 7.5 %}
+                <h3 class="medium-rated">{{rating}} Rated {{position}}</h3>
+            {% elif rating_float >= 7.0 %}
+                <h3 class="medium-low-rated">{{rating}} Rated {{position}}</h3>
+            {% else %}
+                <h3 class="low-rated">{{rating}} Rated {{position}}</h3>
+            {% endif %}
+            <h3>Nationality:    {{nationality}}</h3>
+            <h3>Birth:    {{birthdate}}</h3>
+            <h3>Age:    {{age}}</h3>
+            <h3>Height:    {{height}}</h3>
+            <h3>Weight:    {{weight}}</h3>
+        </div>
+        <div class="intro-stats">
+            <h3>stat</h3>
+        </div>
     </div>
-    <div class="player-name2"></div>
+    <div class="player-name2">
+        <h3 class="desc">{{desc}}</h3>
+    </div>
 </div>
 
 {% endblock %}
