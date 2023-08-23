@@ -255,6 +255,8 @@ p {
 .player-name{  
   display: flex;
   width: 65vw;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .player-name2{
@@ -339,4 +341,8 @@ p {
   line-height: 25px;
 }
 
+.radar-container{
+  margin: 20px;
+  margin-right: 40px;
+}
 
