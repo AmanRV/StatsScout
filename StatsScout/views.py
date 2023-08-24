@@ -38,10 +38,114 @@ def summary():
         position = stats['games']['position']
         rating = round(float(stats['games']['rating']),2)
         rating = str(rating)
+
+        # Games stats
+        appearences = stats['games']['appearences']
+        minutes = stats['games']['minutes']
+
+        # Shots stats
+        shotstotal = stats['shots']['total']
+        shotsot = stats['shots']['on']
+
+        # Goals stats
+        goalstotal = stats['goals']['total']
+        goalsconceded = stats['goals']['conceded']
+        assists = stats['goals']['assists']
+        saves = stats['goals']['saves']
+
+        # Passes stats
+        passes_total = stats['passes']['total']
+        passes_key = stats['passes']['key']
+        passes_accuracy = stats['passes']['accuracy']
+
+        # Tackles stats
+        tackles_total = stats['tackles']['total']
+        tackles_blocks = stats['tackles']['blocks']
+        tackles_interceptions = stats['tackles']['interceptions']
+
+        # Duels stats
+        duels_total = stats['duels']['total']
+        duels_won = stats['duels']['won']
+
+        # Dribbles stats
+        dribbles_attempts = stats['dribbles']['attempts']
+        dribbles_success = stats['dribbles']['success']
+        dribbles_past = stats['dribbles']['past']
+
+        # Fouls stats
+        fouls_drawn = stats['fouls']['drawn']
+        fouls_committed = stats['fouls']['committed']
+
+        # Cards stats
+        cards_yellow = stats['cards']['yellow']
+        cards_yellowred = stats['cards']['yellowred']
+        cards_red = stats['cards']['red']
+
+        # Penalty stats
+        penalty_won = stats['penalty']['won']
+        penalty_committed = stats['penalty']['commited']
+        penalty_scored = stats['penalty']['scored']
+        penalty_missed = stats['penalty']['missed']
+        penalty_saved = stats['penalty']['saved']
         #end
 
+        #shooting calculations
+        goalspercent = ((goalstotal/18)*100)*0.6
+        shotpercent = ((shotsot/shotstotal)*100)*0.4
 
-        return render_template('summary.html', photo=photo, player_name=player_name,club=club,league=league,position=position,rating=rating, birthdate=birthdate, age=age,height=height,weight=weight, nationality=nationality, desc=desc)
+        shots_rating = goalspercent+shotpercent
+
+        if shots_rating > 100:
+            shots_rating = 100
+
+
+
+
+        #Sending stats to webpage to be displayed
+        return render_template('summary.html',
+                       photo=photo,
+                       player_name=player_name,
+                       club=club,
+                       league=league,
+                       position=position,
+                       rating=rating,
+                       birthdate=birthdate,
+                       age=age,
+                       height=height,
+                       weight=weight,
+                       nationality=nationality,
+                       desc=desc,
+                       appearences=appearences,
+                       minutes=minutes,
+                       shotstotal=shotstotal,
+                       shotsot=shotsot,
+                       goalstotal=goalstotal,
+                       goalsconceded=goalsconceded,
+                       assists=assists,
+                       saves=saves,
+                       passes_total=passes_total,
+                       passes_key=passes_key,
+                       passes_accuracy=passes_accuracy,
+                       tackles_total=tackles_total,
+                       tackles_blocks=tackles_blocks,
+                       tackles_interceptions=tackles_interceptions,
+                       duels_total=duels_total,
+                       duels_won=duels_won,
+                       dribbles_attempts=dribbles_attempts,
+                       dribbles_success=dribbles_success,
+                       dribbles_past=dribbles_past,
+                       fouls_drawn=fouls_drawn,
+                       fouls_committed=fouls_committed,
+                       cards_yellow=cards_yellow,
+                       cards_yellowred=cards_yellowred,
+                       cards_red=cards_red,
+                       penalty_won=penalty_won,
+                       penalty_committed=penalty_committed,
+                       penalty_scored=penalty_scored,
+                       penalty_missed=penalty_missed,
+                       penalty_saved=penalty_saved,
+                       shots_rating=shots_rating)
+
     
     except:
         return render_template("home.html")
