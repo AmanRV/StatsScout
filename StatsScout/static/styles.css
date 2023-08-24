@@ -4,7 +4,7 @@ body {
 
 .navbar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 10px 10px;
     
@@ -15,6 +15,27 @@ body {
     border-radius: 30px;
 
     box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+}
+
+.left-nav{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-logo{
+  width: 50px;
+  height: 37.5px;
+  margin-left: 15px;
+}
+
+.nav-title{
+  font-family: 'Merriweather', serif;
+  font-size: 22px;
+  font-weight: bold;
+  color:#FFFFFF;
+  text-decoration: none;
+  margin-left: 10px;
 }
 
 .nav-item{
@@ -244,7 +265,7 @@ p {
 }
 
 /*Apply style to all */
-.player-name, .player-name2{
+.player-name, .player-name2, .attacking, .attacking2, .mid, .mid2, .defend, .defend2{
   background-color: #232f3e;
   border-radius: 30px;
   transition: all 0.3s;
@@ -266,7 +287,7 @@ p {
 }
 
 /*Apply shadow to all */
-.player-name:hover, .player-name2:hover{
+.player-name:hover, .player-name2:hover, .attacking:hover, .attacking2:hover, .mid:hover, .mid2:hover, .defend:hover, .defend2:hover{
   box-shadow: 0 5px 16px rgba(0,0,0,0.3);
   transform: translateY(-5px); 
 }
@@ -344,5 +365,72 @@ p {
 .radar-container{
   margin: 20px;
   margin-right: 40px;
+}
+
+
+.attacking-container{
+  display: flex;
+}
+
+.attacking{
+
+  width: 65vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.attacking2{
+  width: 35vw;
+  display: flex;
+  align-items: center;
+}
+
+.mid-container{
+  display: flex;
+}
+
+.mid{
+  display: flex;
+  width: 65vw;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.mid2{
+  width: 35vw;
+  display: flex;
+  align-items: center;
+}
+
+.defend-container{
+  display: flex;
+}
+
+.defend{
+  display: flex;
+  width: 65vw;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.defend2{
+  width: 35vw;
+  display: flex;
+  align-items: center;
+}
+
+.attack-title, .mid-title, .defend-title{
+  font-family: 'Merriweather', serif;
+  font-size: 40px;
+  margin-bottom: 10px;
+  color:rgb(255, 255, 255)
+}
+
+.attack1a, .mid1a, .defend1a{
+  margin: 20px;
 }
 
