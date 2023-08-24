@@ -149,7 +149,7 @@ https://codepen.io/bugraskl/pen/LYbbqxv
   height: 250px;
   background-color: #232f3e;
   border-radius: 30px;
-  transition: all 0.3s;
+  transition: all 0.6s;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -158,6 +158,7 @@ https://codepen.io/bugraskl/pen/LYbbqxv
 }
 
 .instruction:hover{
+  outline: 5px solid rgba(128, 202, 242, 0.262);
   box-shadow: 0 5px 16px rgba(0,0,0,0.3);
   transform: translateY(-5px);
 }
@@ -268,7 +269,7 @@ p {
 .player-name, .player-name2, .attacking, .attacking2, .mid, .mid2, .defend, .defend2{
   background-color: #232f3e;
   border-radius: 30px;
-  transition: all 0.3s;
+  transition: all 0.6s;
   min-height: 300px;
   box-shadow: 0 5px 16px rgba(0,0,0,0.1);
   margin: 30px
@@ -292,6 +293,7 @@ p {
 
 /*Apply shadow to all */
 .player-name:hover, .player-name2:hover, .attacking:hover, .attacking2:hover, .mid:hover, .mid2:hover, .defend:hover, .defend2:hover{
+  outline: 5px solid rgba(128, 202, 242, 0.262);
   box-shadow: 0 5px 16px rgba(0,0,0,0.3);
   transform: translateY(-5px); 
 }
@@ -311,7 +313,7 @@ p {
   width: 130px;
   height: 130px;
   margin: 5px;
-  margin-left: 35px;
+  margin-right: 35px;
 }
 
 
@@ -319,8 +321,9 @@ p {
 h3{
   margin: 20px;
   font-family: 'Merriweather', serif;
+  font-weight: lighter;
   color: white;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .intro-stats{
@@ -331,31 +334,35 @@ h3{
 }
 
 .high-rated{
+  font-weight: bold;
   font-size: 40px;
   margin-bottom: 10px;
   margin-top: 5px;
-  color:rgb(63, 190, 63)
+  color:rgb(63, 190, 63);
 }
 
 .medium-rated{
+  font-weight: bold;
   font-size: 40px;
   margin-bottom: 10px;
   margin-top: 5px;
-  color:rgb(127, 219, 75)
+  color:rgb(127, 219, 75);
 }
 
 .medium-low-rated{
+  font-weight: bold;
   font-size: 40px;
   margin-bottom: 10px;
   margin-top: 5px;
-  color:rgb(195, 219, 75)
+  color:rgb(195, 219, 75);
 }
 
 .low-rated{
-    font-size: 40px;
+  font-weight: bold;
+  font-size: 40px;
   margin-bottom: 10px;
   margin-top: 5px;
-  color:rgb(219, 109, 75)
+  color:rgb(219, 109, 75);
 }
 
 .desc{
@@ -388,9 +395,11 @@ h3{
 
 .attacking2{
   width: 35vw;
-  display: flex;
-  align-items: center;
+  text-align: center;
+  margin: 20px;
 }
+
+
 
 .mid-container{
   display: flex;
@@ -406,8 +415,8 @@ h3{
 
 .mid2{
   width: 35vw;
-  display: flex;
-  align-items: center;
+  text-align: center;
+  margin: 20px;
 }
 
 .defend-container{
@@ -424,18 +433,24 @@ h3{
 
 .defend2{
   width: 35vw;
-  display: flex;
-  align-items: center;
+  text-align: center;
+  margin: 20px;
 }
 
 .attack-title, .mid-title, .defend-title{
+  font-weight: bold;
   font-family: 'Merriweather', serif;
   font-size: 40px;
-  margin-bottom: 10px;
-  color:rgb(255, 255, 255)
+  margin: 30px;
+  margin-right: 20px;
+  color:rgb(255, 255, 255);
+  text-align: center;
+  transition: all 0.5s;
 }
 
-.attack1a, .mid1a, .defend1a{
+
+.attack1a, .mid1a, .defend1a, .attack2a, .mid2a, .defend2a{
   margin: 20px;
+  min-width: 280px;
 }
 

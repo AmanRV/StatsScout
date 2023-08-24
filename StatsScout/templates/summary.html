@@ -46,18 +46,30 @@
                     type:'radar',
                     options: {
                         scales: {
+                            
                             r: {
+
+                                pointLabels:{
+                                    color:"white",
+                                },
+                                
                                 grid: {
                                 color: 'rgba(255, 255, 255, 0.3)',
                                 lineWidth: 2
                                 },
+                                suggestedMin: 0,
+                                suggestedMax: 100,
 
-                                ticks: {
-                                    color: 'white',
-                                    showLabelBackdrop: false
-                                }
-                                
+                            ticks: {
+                                    
+                                color: 'white',
+                                showLabelBackdrop: false,
+                                min: 0,
+                                max:100
                             }
+                                
+                            },
+                            
                         },
 
                         plugins: {
@@ -68,10 +80,10 @@
 
                     },
                     data: {
-                        labels: ['Scoring','Dribbling','Passing','Defending','Physical','Goalkeeping'],
+                        labels: ['Scoring','Dribbling','Passing','Defending','Goalkeeping'],
                         datasets: [{
                             label: 'Data',
-                            data: ['{{shots_rating}}', 23, 44, 55, 33, 34,], // Replace with actual data values
+                            data: ['{{shots_rating}}', '{{dribble_rating}}', '{{pass_rating}}', '{{defending_rating}}', '{{goalkeeping_rating}}',], // Replace with actual data values
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
@@ -92,53 +104,237 @@
 {% if position == 'Attacker' %}
     <div class="attacking-container">
         <div class="attacking">
+            <h3 class="attack-title">Attacking Stats</h3>
             <div class='attack1a'>
-                <h3 class="attack-title">Attacking Stats</h3>
+                
                 <h3>Matches Played:    {{appearences}}</h3>
                 <h3>Minutes Played:    {{minutes}}</h3>
                 <h3>Goals Scored:    {{goalstotal}}</h3>
-                <h3>Total Shots:    {{shotstotal}}</h3>
-                <h3>Shots on Target:    {{shotsot}}</h3>
+                <h3>Scores {{goal_ratio}} goals per 90 minutes</h3>
+                
             </div>
             <div class='attack2a'>
-                
+                <h3>Total Shots:    {{shotstotal}}</h3>
+                <h3>Shots on Target:    {{shotsot}}</h3>
+                <h3>Penalties Won:    {{penalty_won}}</h3>
+                <h3>Scored {{penalty_scored}} penalties and missed {{penalty_missed}}</h3>
             </div>
             
         </div>
         <div class="attacking2">
+            <h3> {{player_name}} vs the Average Player in Goals</h3>
+            <canvas id="attackChart"></canvas>
+            <script>
+                var ctx = document.getElementById('attackChart').getContext('2d')
+                var attackChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}}', 'Average Player'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{goalstotal}}', 10],
+                            backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(255, 138, 82, 0.5)',
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
 
     <div class="mid-container">
         <div class="mid">
+            <h3 class="mid-title">Midfield Stats</h3>
             <div class='mid1a'>
-                <h3 class="mid-title">Midfield Stats</h3>
+                
+                <h3>Assists:    {{assists}}</h3>
+                <h3>Assists {{assist_ratio}} goals per 90 minutes</h3>
+                <h3>Total Passes:    {{passes_total}}</h3>
+                <h3>Key Passes:   {{passes_key}}</h3>
+                
             </div>
             <div class='mid2a'>
-                
+                <h3>Pass Accuracy:    {{passes_accuracy}}%</h3>
+                <h3>Dribble Attempts:    {{dribbles_attempts}}</h3>
+                <h3>Successful Dribbles:    {{dribbles_success}}</h3>
+                <h3>Fouls drawn:    {{fouls_drawn}}</h3>
             </div>
             
         </div>
         <div class="mid2">
+            <h3> {{player_name}} vs the Average Player in Assists</h3>
+            <canvas id="assistChart"></canvas>
+            <script>
+                var ctx = document.getElementById('assistChart').getContext('2d')
+                var assistChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}}', 'Average Player'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{assists}}', 4],
+                            backgroundColor: [
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
 
     <div class="defend-container">
         <div class="defend">
+            <h3 class="defend-title">Defending Stats</h3>
             <div class='defend1a'>
-                <h3 class="defend-title">Defending Stats</h3>
+                
+                <h3>Total Tackles:    {{tackles_total}}</h3>
+                <h3>Blocks:    {{tackles_blocks}}</h3>
+                <h3>Interceptions:    {{tackles_interceptions}}</h3>
+                <h3>Total Duels:    {{duels_total}}</h3>
+                <h3>Duels Won:    {{duels_won}}</h3>
+                
             </div>
             <div class='defend2a'>
-                
+                <h3>Fouls Committed:    {{fouls_committed}}</h3>
+                <h3>Yellow Cards:    {{cards_yellow}}</h3>
+                <h3>Red Cards:    {{cards_red}}</h3>
+                <h3>Penalties Committed:    {{penalty_committed}}</h3>
             </div>
             
         </div>
         <div class="defend2">
+            <h3> {{player_name}} vs the Average Player in Blocks and Interceptions</h3>
+            <canvas id="defendChart"></canvas>
+            <script>
+                var ctx = document.getElementById('defendChart').getContext('2d')
+                var defendChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}} Blocks','Average Blocks', '{{player_name}} Interceptions','Average Interceptions'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{tackles_blocks}}',10, '{{tackles_interceptions}}',20],
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgb(54, 162, 235)',
+                                'rgb(153, 102, 255)',
+                                'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
@@ -146,35 +342,154 @@
 
     <div class="mid-container">
         <div class="mid">
+            <h3 class="mid-title">Midfield Stats</h3>
             <div class='mid1a'>
-                <h3 class="mid-title">Midfield Stats</h3>
+                <h3>Matches Played:    {{appearences}}</h3>
+                <h3>Minutes Played:    {{minutes}}</h3>
+                <h3>Assists:    {{assists}}</h3>
+                <h3>Assists {{assist_ratio}} goals per 90 minutes</h3>
+                <h3>Total Passes:    {{passes_total}}</h3>
+                
             </div>
             <div class='mid2a'>
-                
+                <h3>Key Passes:   {{passes_key}}</h3>
+                <h3>Pass Accuracy:    {{passes_accuracy}}%</h3>
+                <h3>Dribble Attempts:    {{dribbles_attempts}}</h3>
+                <h3>Successful Dribbles:    {{dribbles_success}}</h3>
             </div>
             
         </div>
         <div class="mid2">
+            <h3> {{player_name}} vs the Average Player in Assists</h3>
+            <canvas id="assistChart"></canvas>
+            <script>
+                var ctx = document.getElementById('assistChart').getContext('2d')
+                var assistChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}}', 'Average Player'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{assists}}', 4],
+                            backgroundColor: [
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
 
     <div class="attacking-container">
         <div class="attacking">
+            <h3 class="attack-title">Attacking Stats</h3>
             <div class='attack1a'>
-                <h3 class="attack-title">Attacking Stats</h3>
+                
                 <h3>Goals Scored:    {{goalstotal}}</h3>
+                <h3>Scores {{goal_ratio}} goals per 90 minutes</h3>
                 <h3>Total Shots:    {{shotstotal}}</h3>
-                <h3>Shots on Target:    {{shotsot}}</h3>
+                
             </div>
             <div class='attack2a'>
-                
+                <h3>Shots on Target:    {{shotsot}}</h3>
+                <h3>Penalties Won:    {{penalty_won}}</h3>
+                <h3>Scored {{penalty_scored}} penalties and missed {{penalty_missed}}</h3>
             </div>
             
         </div>
         <div class="attacking2">
+            <h3> {{player_name}} vs the Average Player in Goals</h3>
+            <canvas id="attackChart"></canvas>
+            <script>
+                var ctx = document.getElementById('attackChart').getContext('2d')
+                var attackChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}}', 'Average Player'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{goalstotal}}', 10],
+                            backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(255, 138, 82, 0.5)',
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
@@ -182,16 +497,81 @@
 
     <div class="defend-container">
         <div class="defend">
+            <h3 class="defend-title">Defending Stats</h3>
             <div class='defend1a'>
-                <h3 class="defend-title">Defending Stats</h3>
+                
+                <h3>Total Tackles:    {{tackles_total}}</h3>
+                <h3>Blocks:    {{tackles_blocks}}</h3>
+                <h3>Interceptions:    {{tackles_interceptions}}</h3>
+                <h3>Total Duels:    {{duels_total}}</h3>
+                <h3>Duels Won:    {{duels_won}}</h3>
+                
             </div>
             <div class='defend2a'>
-                
+                <h3>Fouls Committed:    {{fouls_committed}}</h3>
+                <h3>Yellow Cards:    {{cards_yellow}}</h3>
+                <h3>Red Cards:    {{cards_red}}</h3>
+                <h3>Penalties Committed:    {{penalty_committed}}</h3>
             </div>
             
         </div>
         <div class="defend2">
+            <h3> {{player_name}} vs the Average Player in Blocks and Interceptions</h3>
+            <canvas id="defendChart"></canvas>
+            <script>
+                var ctx = document.getElementById('defendChart').getContext('2d')
+                var defendChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}} Blocks','Average Blocks', '{{player_name}} Interceptions','Average Interceptions'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{tackles_blocks}}',10, '{{tackles_interceptions}}',20],
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgb(54, 162, 235)',
+                                'rgb(153, 102, 255)',
+                                'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
@@ -199,52 +579,239 @@
 
     <div class="defend-container">
         <div class="defend">
+            <h3 class="defend-title">Defending Stats</h3>
             <div class='defend1a'>
-                <h3 class="defend-title">Defending Stats</h3>
+                
+                <h3>Matches Played:    {{appearences}}</h3>
+                <h3>Minutes Played:    {{minutes}}</h3>
+                <h3>Total Tackles:    {{tackles_total}}</h3>
+                <h3>Blocks:    {{tackles_blocks}}</h3>
+                <h3>Interceptions:    {{tackles_interceptions}}</h3>
+                <h3>Total Duels:    {{duels_total}}</h3>
+                
                 
             </div>
             <div class='defend2a'>
-                
+                <h3>Duels Won:    {{duels_won}}</h3>
+                <h3>Fouls Committed:    {{fouls_committed}}</h3>
+                <h3>Yellow Cards:    {{cards_yellow}}</h3>
+                <h3>Red Cards:    {{cards_red}}</h3>
+                <h3>Penalties Committed:    {{penalty_committed}}</h3>
             </div>
             
         </div>
         <div class="defend2">
+            <h3> {{player_name}} vs the Average Player in Blocks and Interceptions</h3>
+            <canvas id="defendChart"></canvas>
+            <script>
+                var ctx = document.getElementById('defendChart').getContext('2d')
+                var defendChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white',
+                                    autoSkip: false,
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white',
+                                    
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}} Blocks','Average Blocks', '{{player_name}} Interceptions','Average Interceptions'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{tackles_blocks}}',10, '{{tackles_interceptions}}',20],
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgb(54, 162, 235)',
+                                'rgb(153, 102, 255)',
+                                'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
 
     <div class="mid-container">
         <div class="mid">
+            <h3 class="mid-title">Midfield Stats</h3>
             <div class='mid1a'>
-                <h3 class="mid-title">Midfield Stats</h3>
+                
+                <h3>Assists:    {{assists}}</h3>
+                <h3>Assists {{assist_ratio}} goals per 90 minutes</h3>
+                <h3>Total Passes:    {{passes_total}}</h3>
+                <h3>Key Passes:   {{passes_key}}</h3>
+                
             </div>
             <div class='mid2a'>
-                
+                <h3>Pass Accuracy:    {{passes_accuracy}}%</h3>
+                <h3>Dribble Attempts:    {{dribbles_attempts}}</h3>
+                <h3>Successful Dribbles:    {{dribbles_success}}</h3>
             </div>
             
         </div>
         <div class="mid2">
+            <h3> {{player_name}} vs the Average Player in Assists</h3>
+            <canvas id="assistChart"></canvas>
+            <script>
+                var ctx = document.getElementById('assistChart').getContext('2d')
+                var assistChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}}', 'Average Player'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{assists}}', 4],
+                            backgroundColor: [
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
 
     <div class="attacking-container">
         <div class="attacking">
+            <h3 class="attack-title">Attacking Stats</h3>
             <div class='attack1a'>
-                <h3 class="attack-title">Attacking Stats</h3>
+                
                 <h3>Goals Scored:    {{goalstotal}}</h3>
+                <h3>Scores {{goal_ratio}} goals per 90 minutes</h3>
                 <h3>Total Shots:    {{shotstotal}}</h3>
-                <h3>Shots on Target:    {{shotsot}}</h3>
+                
             </div>
             <div class='attack2a'>
-                
+                <h3>Shots on Target:    {{shotsot}}</h3>
+                <h3>Penalties Won:    {{penalty_won}}</h3>
+                <h3>Scored {{penalty_scored}} penalties and missed {{penalty_missed}}</h3>
             </div>
             
         </div>
         <div class="attacking2">
+            <h3> {{player_name}} vs the Average Player in Goals</h3>
+            <canvas id="attackChart"></canvas>
+            <script>
+                var ctx = document.getElementById('attackChart').getContext('2d')
+                var attackChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}}', 'Average Player'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{goalstotal}}', 10],
+                            backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(255, 138, 82, 0.5)',
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
@@ -252,51 +819,236 @@
 {% else %}
     <div class="attacking-container">
         <div class="attacking">
+            <h3 class="attack-title">Attacking Stats</h3>
             <div class='attack1a'>
-                <h3 class="attack-title">Attacking Stats</h3>
+                
+                <h3>Matches Played:    {{appearences}}</h3>
+                <h3>Minutes Played:    {{minutes}}</h3>
                 <h3>Goals Scored:    {{goalstotal}}</h3>
-                <h3>Total Shots:    {{shotstotal}}</h3>
-                <h3>Shots on Target:    {{shotsot}}</h3>
+                <h3>Scores {{goal_ratio}} goals per 90 minutes</h3>
+                
             </div>
             <div class='attack2a'>
-                
+                <h3>Total Shots:    {{shotstotal}}</h3>
+                <h3>Shots on Target:    {{shotsot}}</h3>
+                <h3>Penalties Won:    {{penalty_won}}</h3>
+                <h3>Scored {{penalty_scored}} penalties and missed {{penalty_missed}}</h3>
             </div>
             
         </div>
         <div class="attacking2">
+            <h3> {{player_name}} vs the Average Player in Goals</h3>
+            <canvas id="attackChart"></canvas>
+            <script>
+                var ctx = document.getElementById('attackChart').getContext('2d')
+                var attackChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}}', 'Average Player'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{goalstotal}}', 10],
+                            backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(255, 138, 82, 0.5)',
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
 
     <div class="mid-container">
         <div class="mid">
+            <h3 class="mid-title">Midfield Stats</h3>
             <div class='mid1a'>
-                <h3 class="mid-title">Midfield Stats</h3>
+                
+                <h3>Assists:    {{assists}}</h3>
+                <h3>Assists {{assist_ratio}} goals per 90 minutes</h3>
+                <h3>Total Passes:    {{passes_total}}</h3>
+                <h3>Key Passes:   {{passes_key}}</h3>
+                
             </div>
             <div class='mid2a'>
-                
+                <h3>Pass Accuracy:    {{passes_accuracy}}%</h3>
+                <h3>Dribble Attempts:    {{dribbles_attempts}}</h3>
+                <h3>Successful Dribbles:    {{dribbles_success}}</h3>
             </div>
             
         </div>
         <div class="mid2">
+            <h3> {{player_name}} vs the Average Player in Assists</h3>
+            <canvas id="assistChart"></canvas>
+            <script>
+                var ctx = document.getElementById('assistChart').getContext('2d')
+                var assistChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}}', 'Average Player'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{assists}}', 4],
+                            backgroundColor: [
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>
 
     <div class="defend-container">
         <div class="defend">
+            <h3 class="defend-title">Defending Stats</h3>
             <div class='defend1a'>
-                <h3 class="defend-title">Defending Stats</h3>
+                
+                <h3>Total Tackles:    {{tackles_total}}</h3>
+                <h3>Blocks:    {{tackles_blocks}}</h3>
+                <h3>Interceptions:    {{tackles_interceptions}}</h3>
+                <h3>Total Duels:    {{duels_total}}</h3>
+                <h3>Duels Won:    {{duels_won}}</h3>
+                
             </div>
             <div class='defend2a'>
-                
+                <h3>Fouls Committed:    {{fouls_committed}}</h3>
+                <h3>Yellow Cards:    {{cards_yellow}}</h3>
+                <h3>Red Cards:    {{cards_red}}</h3>
+                <h3>Penalties Committed:    {{penalty_committed}}</h3>
             </div>
             
         </div>
         <div class="defend2">
+            <h3> {{player_name}} vs the Average Player in Blocks and Interceptions</h3>
+            <canvas id="defendChart"></canvas>
+            <script>
+                var ctx = document.getElementById('defendChart').getContext('2d')
+                var defendChart = new Chart(ctx, {
+                    type: 'bar',
+                    options: {
+                        layout: {
+                            padding: 20
+                        },
+                        scales: {
+                            
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0)'
+                                }
+                            }
 
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    },
+                    data: {
+                        labels: ['{{player_name}} Blocks','Average Blocks', '{{player_name}} Interceptions','Average Interceptions'],
+                        datasets: [{
+                            label: 'Data',
+                            data: ['{{tackles_blocks}}',10, '{{tackles_interceptions}}',20],
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgb(54, 162, 235)',
+                                'rgb(153, 102, 255)',
+                                'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 3
+                        }]
+                    }
+                })
+            </script>
         </div>
             
     </div>

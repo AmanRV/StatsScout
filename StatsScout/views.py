@@ -99,6 +99,54 @@ def summary():
         if shots_rating > 100:
             shots_rating = 100
 
+        if assists != None:
+            assistpercent = ((assists/10)*100)*0.6
+            passpercent = (passes_accuracy)*0.60
+
+            pass_rating = assistpercent+passpercent
+        else:
+            pass_rating = passes_accuracy
+
+        if pass_rating > 100:
+            pass_rating = 100
+
+        dribble_rating = (dribbles_success/dribbles_attempts)*100
+        dribble_rating = dribble_rating**1.1
+
+        if dribble_rating > 100:
+            dribble_rating = 100
+
+        defending_rating = ((duels_won/duels_total)*100)
+
+        if defending_rating > 100:
+            defending_rating = 100
+
+        if position == 'Goalkeeper':
+            goalkeeping_rating = -((goalsconceded*0.14 - 3)**2)+100
+            defending_rating = defending_rating/2
+            dribble_rating = dribble_rating/2
+        else:
+            goalkeeping_rating = 0
+
+        if goalsconceded < 30 and position == 'Goalkeeper':
+            goalkeeping_rating = 100
+        
+        
+        
+        
+        
+        if goalstotal != None:
+            goal_ratio = round(((float(goalstotal)/float(minutes))*90),2)
+            goal_ratio = str(goal_ratio)
+        else:
+            goal_ratio=0
+
+        if assists != None:
+            assist_ratio = round(((float(assists)/float(minutes))*90),2)
+            assist_ratio = str(assist_ratio)
+        else:
+            assist_ratio=0
+
 
 
 
@@ -112,7 +160,10 @@ def summary():
                        position=position,
                        rating=rating,
                        birthdate=birthdate,
+                       goalkeeping_rating=goalkeeping_rating,
                        age=age,
+                       dribble_rating=dribble_rating,
+                       defending_rating=defending_rating,
                        height=height,
                        weight=weight,
                        nationality=nationality,
@@ -123,6 +174,7 @@ def summary():
                        shotsot=shotsot,
                        goalstotal=goalstotal,
                        goalsconceded=goalsconceded,
+                       pass_rating=pass_rating,
                        assists=assists,
                        saves=saves,
                        passes_total=passes_total,
@@ -146,6 +198,8 @@ def summary():
                        penalty_scored=penalty_scored,
                        penalty_missed=penalty_missed,
                        penalty_saved=penalty_saved,
+                       goal_ratio=goal_ratio,
+                       assist_ratio=assist_ratio,
                        shots_rating=shots_rating)
 
     
