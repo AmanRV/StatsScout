@@ -26,6 +26,7 @@ def summary():
         #setting player stats
         photo = stats["photo"]
         club = stats["team"]['logo']
+        club_name = stats["team"]['name']
         player_name = stats["name"]
         age = stats["age"]
         birthdate = stats["birth"]['date']
@@ -105,8 +106,9 @@ def summary():
         return render_template('summary.html',
                        photo=photo,
                        player_name=player_name,
-                       club=club,
                        league=league,
+                       club=club,
+                       club_name=club_name,
                        position=position,
                        rating=rating,
                        birthdate=birthdate,

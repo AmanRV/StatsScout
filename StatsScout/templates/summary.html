@@ -31,6 +31,7 @@
                 <h3 class="low-rated">{{rating}} Rated {{position}}</h3>
             {% endif %}
             <h3>Nationality:    {{nationality}}</h3>
+            <h3>Club:    {{club_name}} in {{league}}</h3>
             <h3>Birth:    {{birthdate}}</h3>
             <h3>Age:    {{age}}</h3>
             <h3>Height:    {{height}}</h3>
@@ -93,6 +94,11 @@
         <div class="attacking">
             <div class='attack1a'>
                 <h3 class="attack-title">Attacking Stats</h3>
+                <h3>Matches Played:    {{appearences}}</h3>
+                <h3>Minutes Played:    {{minutes}}</h3>
+                <h3>Goals Scored:    {{goalstotal}}</h3>
+                <h3>Total Shots:    {{shotstotal}}</h3>
+                <h3>Shots on Target:    {{shotsot}}</h3>
             </div>
             <div class='attack2a'>
                 
@@ -106,7 +112,7 @@
     </div>
 
     <div class="mid-container">
-        <<div class="mid">
+        <div class="mid">
             <div class='mid1a'>
                 <h3 class="mid-title">Midfield Stats</h3>
             </div>
@@ -139,7 +145,7 @@
 {% elif position == 'Midfielder' %}
 
     <div class="mid-container">
-        <<div class="mid">
+        <div class="mid">
             <div class='mid1a'>
                 <h3 class="mid-title">Midfield Stats</h3>
             </div>
@@ -158,6 +164,9 @@
         <div class="attacking">
             <div class='attack1a'>
                 <h3 class="attack-title">Attacking Stats</h3>
+                <h3>Goals Scored:    {{goalstotal}}</h3>
+                <h3>Total Shots:    {{shotstotal}}</h3>
+                <h3>Shots on Target:    {{shotsot}}</h3>
             </div>
             <div class='attack2a'>
                 
@@ -186,12 +195,13 @@
         </div>
             
     </div>
-{% elif rating_float >= 7.0 %}
+{% elif position == 'Defender' %}
 
     <div class="defend-container">
         <div class="defend">
             <div class='defend1a'>
                 <h3 class="defend-title">Defending Stats</h3>
+                
             </div>
             <div class='defend2a'>
                 
@@ -205,7 +215,7 @@
     </div>
 
     <div class="mid-container">
-        <<div class="mid">
+        <div class="mid">
             <div class='mid1a'>
                 <h3 class="mid-title">Midfield Stats</h3>
             </div>
@@ -224,6 +234,9 @@
         <div class="attacking">
             <div class='attack1a'>
                 <h3 class="attack-title">Attacking Stats</h3>
+                <h3>Goals Scored:    {{goalstotal}}</h3>
+                <h3>Total Shots:    {{shotstotal}}</h3>
+                <h3>Shots on Target:    {{shotsot}}</h3>
             </div>
             <div class='attack2a'>
                 
@@ -241,6 +254,9 @@
         <div class="attacking">
             <div class='attack1a'>
                 <h3 class="attack-title">Attacking Stats</h3>
+                <h3>Goals Scored:    {{goalstotal}}</h3>
+                <h3>Total Shots:    {{shotstotal}}</h3>
+                <h3>Shots on Target:    {{shotsot}}</h3>
             </div>
             <div class='attack2a'>
                 
@@ -254,7 +270,7 @@
     </div>
 
     <div class="mid-container">
-        <<div class="mid">
+        <div class="mid">
             <div class='mid1a'>
                 <h3 class="mid-title">Midfield Stats</h3>
             </div>
