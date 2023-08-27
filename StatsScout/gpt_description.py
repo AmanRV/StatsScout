@@ -3,10 +3,10 @@ import os
 import openai
 
 
-def generate_bio(input_text):
+def agenerate_bio(input_text):
     return "hi"
 
-def agenerate_bio(input_text):
+def generate_bio(input_text):
     load_dotenv()
     openai.api_key = os.getenv("GPT_KEY")
 
