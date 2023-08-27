@@ -39,7 +39,7 @@ def player_stats(player_name):
     db = client["players_database"]
     players = db["players"]
     try:
-        player_info = players.find_one({'name': {"$regex": re.compile(player_name, re.IGNORECASE)}})
+        player_info = players.find_one({'name': player_name})
         print(player_info)
     except:
         print('didnt work')
