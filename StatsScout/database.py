@@ -35,6 +35,7 @@ def player_stats(player_name):
     load_dotenv()
     url = os.getenv("DB_URL")
     client = MongoClient(url, server_api=ServerApi('1'))
+    print(url)
 
     db = client["players_database"]
     players = db["players"]
