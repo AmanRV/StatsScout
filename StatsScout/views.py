@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from .database import player_stats
 from .gpt_description import generate_bio
+import traceback
 
 views = Blueprint('views',__name__)
 
@@ -23,11 +24,13 @@ def summary():
 
         desc = generate_bio(str(stats))
 
+
+
         #setting player stats
         photo = stats["photo"]
         club = stats["team"]['logo']
         club_name = stats["team"]['name']
-        player_name = stats["name"]
+        player_name = stats["complete_name"]
         age = stats["age"]
         birthdate = stats["birth"]['date']
         nationality = stats["nationality"]
@@ -91,10 +94,14 @@ def summary():
         #end
 
         #shooting calculations
-        goalspercent = ((goalstotal/18)*100)*0.6
-        shotpercent = ((shotsot/shotstotal)*100)*0.4
+        if goalstotal != None and shotsot != None:
+            goalspercent = ((goalstotal/18)*100)*0.6
+            shotpercent = ((shotsot/shotstotal)*100)*0.4
+            shots_rating = goalspercent+shotpercent
+        else:
+            shots_rating = 0
 
-        shots_rating = goalspercent+shotpercent
+        
 
         if shots_rating > 100:
             shots_rating = 100
@@ -110,13 +117,19 @@ def summary():
         if pass_rating > 100:
             pass_rating = 100
 
-        dribble_rating = (dribbles_success/dribbles_attempts)*100
-        dribble_rating = dribble_rating**1.1
+        if dribbles_success != None:
+            dribble_rating = (dribbles_success/dribbles_attempts)*100
+            dribble_rating = dribble_rating**1.1
+        else:
+            dribble_rating=0
 
         if dribble_rating > 100:
             dribble_rating = 100
 
-        defending_rating = ((duels_won/duels_total)*100)
+        if duels_won != None and duels_total != None:
+            defending_rating = ((duels_won/duels_total)*100)
+        else:
+            defending_rating = 0
 
         if defending_rating > 100:
             defending_rating = 100
@@ -149,6 +162,7 @@ def summary():
 
 
 
+        
 
         #Sending stats to webpage to be displayed
         return render_template('summary.html',
@@ -203,5 +217,7 @@ def summary():
                        shots_rating=shots_rating)
 
     
-    except:
+    except Exception as e:
+        print(e)
+        traceback.print_exc()
         return render_template("home.html")
