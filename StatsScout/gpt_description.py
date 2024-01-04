@@ -4,7 +4,7 @@ import openai
 
 
 def agenerate_bio(input_text):
-    return "hi"
+    return "API Calls Exceeded. Temporarily Disabled."
 
 def generate_bio(input_text):
     load_dotenv()

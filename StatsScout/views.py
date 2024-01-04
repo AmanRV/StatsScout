@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from .database import player_stats
-from .gpt_description import generate_bio
+from .gpt_description import agenerate_bio
 import traceback
 
 views = Blueprint('views',__name__)
@@ -22,7 +22,7 @@ def summary():
         player_name = request.args.get('player_name')
         stats = player_stats(player_name)
 
-        desc = generate_bio(str(stats))
+        desc = agenerate_bio(str(stats))
 
 
 
